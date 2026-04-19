@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: daily_finances
+    description: Daily summary of revenue, cost, and profit.
+    columns:
+      - name: finance_date
+        description: Calendar date for the financial summary.
+        tests:
+          - unique
+          - not_null
+
+      - name: order_count
+        description: Number of distinct orders on that date.
+
+      - name: gross_revenue
+        description: Revenue aggregated for the day based on the available order fields.
+
+      - name: total_cost
+        description: Total expense amount recorded for the day.
+
+      - name: profit
+        description: Daily gross revenue minus daily total cost.
