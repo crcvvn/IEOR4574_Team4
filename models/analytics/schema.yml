@@ -1,6 +1,34 @@
 version: 2
 
 models:
+  - name: dim_employee
+    description: One row per employee with employment status and tenure
+
+    columns:
+      - name: employee_id
+        description: Unique employee identifier
+        tests:
+          - not_null
+          - unique
+
+      - name: employee_name
+        description: Employee name
+
+      - name: city
+        description: Employee city
+
+      - name: hire_date
+        description: Date when the employee was hired
+
+      - name: quit_date
+        description: Date when the employee left (null if still active)
+
+      - name: is_active
+        description: Whether the employee is currently active
+
+      - name: tenure_days
+        description: Number of days the employee has worked
+
   - name: daily_finances
     description: Daily summary of revenue, cost, and profit.
     columns:
