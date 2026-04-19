@@ -49,6 +49,8 @@ models:
 
       - name: profit
         description: Daily gross revenue minus daily total cost.
+
+
   - name: fact_session
     description: One row per session, summarizing all events that happened within it. Duplicate session_ids are resolved by keeping the earliest instance.
 
@@ -74,8 +76,8 @@ models:
       - name: total_item_views
         description: Total number of item views in the session
 
-      - name: total_add_to_cart
-        description: Total quantity of items added to cart in the session
+      - name: distinct_items_in_cart
+        description: Number of distinct items that ended up in cart in the session
 
       - name: has_page_view
         description: True if the session had at least one page view
@@ -114,9 +116,6 @@ models:
       - name: shipping_cost
         description: Shipping cost for the order
 
-      - name: tax_rate
-        description: Tax rate applied to the order
-
       - name: state
         description: State where the order was shipped
 
@@ -125,3 +124,6 @@ models:
 
       - name: is_refunded
         description: True if the returned order was refunded
+        
+      - name: returned_at
+        description: Timestamp when the order was returned, null if not returned
