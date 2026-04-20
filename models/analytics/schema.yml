@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: dim_client
+    description: "Client dimension table. Each row represents a unique client with aggregated order behavior."
+    columns:
+      - name: client_id
+        description: "Unique client identifier (client_name)"
+        tests:
+          - unique
+          - not_null
+      - name: client_name
+        description: "Client name"
+        tests:
+          - not_null
+      - name: total_orders
+        description: "Total number of orders placed by this client"
+        tests:
+          - not_null
+      - name: first_order_at
+        description: "Timestamp of the client's first order"
+      - name: last_order_at
+        description: "Timestamp of the client's most recent order"
+      - name: avg_shipping_cost
+        description: "Average shipping cost across all orders"
+      - name: client_segment
+        description: "Client segment: high_value / returning / one_time"
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - high_value
+                  - returning
+                  - one_time
+
+  - name: dim_item
+    description: "Item dimension table. Each row represents a unique item with aggregated view and cart behavior."
+    columns:
+      - name: item_id
+        description: "Unique item identifier (item_name)"
+        tests:
+          - unique
+          - not_null
+      - name: item_name
+        description: "Item name"
+        tests:
+          - not_null
+      - name: avg_price
+        description: "Average price per unit across all views"
+        tests:
+          - not_null
+      - name: total_views
+        description: "Total number of item view events"
+      - name: sessions_with_views
+        description: "Number of distinct sessions that viewed this item"
+      - name: total_added_to_cart
+        description: "Total quantity added to cart"
+      - name: total_removed_from_cart
+        description: "Total quantity removed from cart"
+      - name: add_to_cart_rate
+        description: "Add-to-cart rate = total_added_to_cart / total_views"
