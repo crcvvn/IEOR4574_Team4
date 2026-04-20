@@ -36,16 +36,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  ieor4574_team4:
+  plants_analytics:
     base:
       +materialized: view
-      +schema: BASE
+      +schema: base
     intermediate:
       +materialized: view
-      +schema: INTERMEDIATE
+      +schema: intermediate
     analytics:
       +materialized: table
-      +schema: ANALYTICS
-    core:
-      +materialized: table
-      +schema: CORE
+      +schema: analytics
