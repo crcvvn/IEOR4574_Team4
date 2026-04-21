@@ -59,12 +59,9 @@ models:
         description: "Total quantity removed from cart"
       - name: add_to_cart_rate
         description: "Add-to-cart rate = total_added_to_cart / total_views"
-version: 2
 
-models:
   - name: dim_employee
     description: One row per employee with employment status and tenure
-
     columns:
       - name: employee_id
         description: Unique employee identifier
