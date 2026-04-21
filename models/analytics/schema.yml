@@ -1,9 +1,67 @@
 version: 2
 
 models:
+  - name: dim_client
+    description: "Client dimension table. Each row represents a unique client with aggregated order behavior."
+    columns:
+      - name: client_id
+        description: "Unique client identifier (client_name)"
+        tests:
+          - unique
+          - not_null
+      - name: client_name
+        description: "Client name"
+        tests:
+          - not_null
+      - name: total_orders
+        description: "Total number of orders placed by this client"
+        tests:
+          - not_null
+      - name: first_order_at
+        description: "Timestamp of the client's first order"
+      - name: last_order_at
+        description: "Timestamp of the client's most recent order"
+      - name: avg_shipping_cost
+        description: "Average shipping cost across all orders"
+      - name: client_segment
+        description: "Client segment: high_value / returning / one_time"
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - high_value
+                  - returning
+                  - one_time
+
+  - name: dim_item
+    description: "Item dimension table. Each row represents a unique item with aggregated view and cart behavior."
+    columns:
+      - name: item_id
+        description: "Unique item identifier (item_name)"
+        tests:
+          - unique
+          - not_null
+      - name: item_name
+        description: "Item name"
+        tests:
+          - not_null
+      - name: avg_price
+        description: "Average price per unit across all views"
+        tests:
+          - not_null
+      - name: total_views
+        description: "Total number of item view events"
+      - name: sessions_with_views
+        description: "Number of distinct sessions that viewed this item"
+      - name: total_added_to_cart
+        description: "Total quantity added to cart"
+      - name: total_removed_from_cart
+        description: "Total quantity removed from cart"
+      - name: add_to_cart_rate
+        description: "Add-to-cart rate = total_added_to_cart / total_views"
+
   - name: dim_employee
     description: One row per employee with employment status and tenure
-
     columns:
       - name: employee_id
         description: Unique employee identifier
@@ -49,3 +107,81 @@ models:
 
       - name: profit
         description: Daily gross revenue minus daily total cost.
+
+
+  - name: fact_session
+    description: One row per session, summarizing all events that happened within it. Duplicate session_ids are resolved by keeping the earliest instance.
+
+    columns:
+      - name: session_id
+        description: Unique identifier for each session
+        tests:
+          - not_null
+          - unique
+
+      - name: client_id
+        description: Identifier of the client who initiated the session
+
+      - name: session_at
+        description: Timestamp when the session started
+
+      - name: operating_system
+        description: Operating system used during the session
+
+      - name: total_page_views
+        description: Total number of page views in the session
+
+      - name: total_item_views
+        description: Total number of item views in the session
+
+      - name: distinct_items_in_cart
+        description: Number of distinct items that ended up in cart in the session
+
+      - name: has_page_view
+        description: True if the session had at least one page view
+
+      - name: has_item_view
+        description: True if the session had at least one item view
+
+      - name: has_add_to_cart
+        description: True if the session had at least one item added to cart
+
+      - name: has_order
+        description: True if the session resulted in at least one order
+
+  - name: fact_order
+    description: One row per order, summarizing order details and return status. Duplicate order_ids are resolved by keeping the earliest instance.
+
+    columns:
+      - name: order_id
+        description: Unique identifier for each order
+        tests:
+          - not_null
+          - unique
+
+      - name: session_id
+        description: Session during which the order was placed
+
+      - name: order_at
+        description: Timestamp when the order was placed
+
+      - name: client_name
+        description: Name of the client who placed the order
+
+      - name: payment_method
+        description: Payment method used for the order
+
+      - name: shipping_cost
+        description: Shipping cost for the order
+
+      - name: state
+        description: State where the order was shipped
+
+      - name: is_returned
+        description: True if the order was returned
+
+      - name: is_refunded
+        description: True if the returned order was refunded
+        
+      - name: returned_at
+        description: Timestamp when the order was returned, null if not returned
