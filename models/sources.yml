@@ -7,28 +7,28 @@ sources:
     tables:
       - name: hr_joins
         config:
-          loaded_at_field: _fivetran_synced
+          loaded_at_field: _fivetran_synced_at
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: hr_quits
         config:
-          loaded_at_field: _fivetran_synced
+          loaded_at_field: _fivetran_synced_at
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: expenses
         config:
-          loaded_at_field: _fivetran_synced
+          loaded_at_field: _fivetran_synced_at
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: returns
         config:
-          loaded_at_field: _fivetran_synced
+          loaded_at_field: _fivetran_synced_at
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
@@ -39,28 +39,28 @@ sources:
     tables:
       - name: sessions
         config:
-          loaded_at_field: _fivetran_synced
+          loaded_at_field: _fivetran_synced_at
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: page_views
         config:
-          loaded_at_field: _fivetran_synced
+          loaded_at_field: _fivetran_synced_at
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: item_views
         config:
-          loaded_at_field: _fivetran_synced
+          loaded_at_field: _fivetran_synced_at
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: orders
         config:
-          loaded_at_field: _fivetran_synced
+          loaded_at_field: _fivetran_synced_at
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
