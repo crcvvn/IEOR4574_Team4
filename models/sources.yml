@@ -7,28 +7,44 @@ sources:
     tables:
       - name: hr_joins
         config:
+<<<<<<< HEAD
+          loaded_at_field: _FIVETRAN_SYNCED
+=======
           loaded_at_field: fivetran_synced_at
+>>>>>>> f902fc2239b1374892e7899302de2acd2a0f01c0
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: hr_quits
         config:
+<<<<<<< HEAD
+          loaded_at_field: _FIVETRAN_SYNCED
+=======
           loaded_at_field: fivetran_synced_at
+>>>>>>> f902fc2239b1374892e7899302de2acd2a0f01c0
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: expenses
         config:
+<<<<<<< HEAD
+          loaded_at_field: _FIVETRAN_SYNCED
+=======
           loaded_at_field: fivetran_synced_at
+>>>>>>> f902fc2239b1374892e7899302de2acd2a0f01c0
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
 
       - name: returns
         config:
+<<<<<<< HEAD
+          loaded_at_field: _FIVETRAN_SYNCED
+=======
           loaded_at_field: fivetran_synced_at
+>>>>>>> f902fc2239b1374892e7899302de2acd2a0f01c0
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
