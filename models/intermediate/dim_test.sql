@@ -1,4 +1,4 @@
-select 
+select
     date as expense_date,
     lower(trim(expense_type)) as expense_type,
     cast(replace(expense_amount, '$', '') as numeric(18,2)) as expense_amount,
