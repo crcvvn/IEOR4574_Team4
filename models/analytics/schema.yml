@@ -59,132 +59,97 @@ models:
         description: "Total quantity removed from cart"
       - name: add_to_cart_rate
         description: "Add-to-cart rate = total_added_to_cart / total_views"
-version: 2
 
-models:
   - name: dim_employee
-    description: One row per employee with employment status and tenure
-
+    description: "One row per employee with employment status and tenure"
     columns:
       - name: employee_id
-        description: Unique employee identifier
+        description: "Unique employee identifier"
         tests:
           - not_null
           - unique
-
       - name: employee_name
-        description: Employee name
-
+        description: "Employee name"
       - name: city
-        description: Employee city
-
+        description: "Employee city"
       - name: hire_date
-        description: Date when the employee was hired
-
+        description: "Date when the employee was hired"
       - name: quit_date
-        description: Date when the employee left (null if still active)
-
+        description: "Date when the employee left (null if still active)"
       - name: is_active
-        description: Whether the employee is currently active
-
+        description: "Whether the employee is currently active"
       - name: tenure_days
-        description: Number of days the employee has worked
+        description: "Number of days the employee has worked"
 
   - name: daily_finances
-    description: Daily summary of revenue, cost, and profit.
+    description: "Daily summary of revenue, cost, and profit."
     columns:
       - name: finance_date
-        description: Calendar date for the financial summary.
+        description: "Calendar date for the financial summary."
         tests:
           - unique
           - not_null
-
       - name: order_count
-        description: Number of distinct orders on that date.
-
+        description: "Number of distinct orders on that date."
       - name: gross_revenue
-        description: Revenue aggregated for the day based on the available order fields.
-
+        description: "Revenue aggregated for the day based on the available order fields."
       - name: total_cost
-        description: Total expense amount recorded for the day.
-
+        description: "Total expense amount recorded for the day."
       - name: profit
-        description: Daily gross revenue minus daily total cost.
-
+        description: "Daily gross revenue minus daily total cost."
 
   - name: fact_session
-    description: One row per session, summarizing all events that happened within it. Duplicate session_ids are resolved by keeping the earliest instance.
-
+    description: "One row per session, summarizing all events that happened within it. Duplicate session_ids are resolved by keeping the earliest instance."
     columns:
       - name: session_id
-        description: Unique identifier for each session
+        description: "Unique identifier for each session"
         tests:
           - not_null
           - unique
-
       - name: client_id
-        description: Identifier of the client who initiated the session
-
+        description: "Identifier of the client who initiated the session"
       - name: session_at
-        description: Timestamp when the session started
-
+        description: "Timestamp when the session started"
       - name: operating_system
-        description: Operating system used during the session
-
+        description: "Operating system used during the session"
       - name: total_page_views
-        description: Total number of page views in the session
-
+        description: "Total number of page views in the session"
       - name: total_item_views
-        description: Total number of item views in the session
-
+        description: "Total number of item views in the session"
       - name: distinct_items_in_cart
-        description: Number of distinct items that ended up in cart in the session
-
+        description: "Number of distinct items that ended up in cart in the session"
       - name: has_page_view
-        description: True if the session had at least one page view
-
+        description: "True if the session had at least one page view"
       - name: has_item_view
-        description: True if the session had at least one item view
-
+        description: "True if the session had at least one item view"
       - name: has_add_to_cart
-        description: True if the session had at least one item added to cart
-
+        description: "True if the session had at least one item added to cart"
       - name: has_order
-        description: True if the session resulted in at least one order
+        description: "True if the session resulted in at least one order"
 
   - name: fact_order
-    description: One row per order, summarizing order details and return status. Duplicate order_ids are resolved by keeping the earliest instance.
-
+    description: "One row per order, summarizing order details and return status. Duplicate order_ids are resolved by keeping the earliest instance."
     columns:
       - name: order_id
-        description: Unique identifier for each order
+        description: "Unique identifier for each order"
         tests:
           - not_null
           - unique
-
       - name: session_id
-        description: Session during which the order was placed
-
+        description: "Session during which the order was placed"
       - name: order_at
-        description: Timestamp when the order was placed
-
+        description: "Timestamp when the order was placed"
       - name: client_name
-        description: Name of the client who placed the order
-
+        description: "Name of the client who placed the order"
       - name: payment_method
-        description: Payment method used for the order
-
+        description: "Payment method used for the order"
       - name: shipping_cost
-        description: Shipping cost for the order
-
+        description: "Shipping cost for the order"
       - name: state
-        description: State where the order was shipped
-
+        description: "State where the order was shipped"
       - name: is_returned
-        description: True if the order was returned
-
+        description: "True if the order was returned"
       - name: is_refunded
-        description: True if the returned order was refunded
-        
+        description: "True if the returned order was refunded"
       - name: returned_at
-        description: Timestamp when the order was returned, null if not returned
+        description: "Timestamp when the order was returned, null if not returned"
