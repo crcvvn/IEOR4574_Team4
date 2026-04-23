@@ -176,6 +176,12 @@ models:
 
       - name: state
         description: State where the order was shipped
+        
+      - name: gross_revenue
+        description: Total revenue from items in the order calculated as price per unit multiplied by net quantity added to cart
+
+      - name: total_revenue
+        description: Total revenue including shipping cost, calculated as gross revenue plus shipping cost
 
       - name: is_returned
         description: True if the order was returned
