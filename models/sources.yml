@@ -8,7 +8,6 @@ sources:
       freshness:
         warn_after: {count: 1, period: day}
         error_after: {count: 5, period: day}
-      loaded_at_query: "select max(\"_FIVETRAN_SYNCED\") from {{ source('google_drive', this.name) }}"
     tables:
       - name: hr_joins
       - name: hr_quits
@@ -22,7 +21,6 @@ sources:
       freshness:
         warn_after: {count: 1, period: day}
         error_after: {count: 5, period: day}
-      loaded_at_query: "select max(\"_fivetran_synced\") from {{ source('web_data', this.name) }}"
     tables:
       - name: sessions
       - name: page_views
