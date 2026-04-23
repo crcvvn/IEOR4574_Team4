@@ -6,6 +6,8 @@ SELECT
     payment_method,
     shipping_cost,
     state,
+    gross_revenue,
+    total_revenue,
     is_returned,
     COALESCE(is_refunded, FALSE)    AS is_refunded,
     returned_at
